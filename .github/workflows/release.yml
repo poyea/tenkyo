@@ -47,7 +47,7 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          name: Release ${{ steps.get_version.outputs.VERSION }}
+          name: ${{ steps.get_version.outputs.VERSION }}
           draft: false
           prerelease: false
           files: |
@@ -55,7 +55,7 @@ jobs:
             tenkyo-web.zip.sha256
             tenkyo-web.zip.sha512
           body: |
-            ### 🔐 Checksums
+            ### Checksums
             **SHA256:** `${{ steps.checksums.outputs.SHA256 }}`
             **SHA512:** `${{ steps.checksums.outputs.SHA512 }}`
             
