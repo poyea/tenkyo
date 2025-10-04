@@ -27,10 +27,6 @@ impl RedirectConfig {
         }
     }
 
-    pub fn default() -> Self {
-        Self::new(String::from("https://poyea.me"), 3)
-    }
-
     #[wasm_bindgen(getter)]
     pub fn target_url(&self) -> String {
         self.target_url.clone()
@@ -69,6 +65,12 @@ impl RedirectConfig {
     #[wasm_bindgen(setter)]
     pub fn set_allow_cancel(&mut self, allow: bool) {
         self.allow_cancel = allow;
+    }
+}
+
+impl Default for RedirectConfig {
+    fn default() -> Self {
+        Self::new(String::from("https://poyea.me"), 3)
     }
 }
 
