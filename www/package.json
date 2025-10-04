@@ -1,7 +1,7 @@
 {
-  "name": "tenkyo-www",
-  "version": "0.1.0",
-  "description": "Web assets for Tenkyo URL redirector",
+  "name": "tenkyo",
+  "version": "0.0.1",
+  "description": "Web assets for Tenkyo",
   "scripts": {
     "serve": "python3 -m http.server 8080"
   }
