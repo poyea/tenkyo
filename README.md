@@ -1,5 +1,3 @@
-<p align="left">
-    <img src="www/logo.svg" alt="Tenkyo" width="150">
-</p>
+<img align="left" src="www/logo.svg" alt="Tenkyo" width="200">
 
 # Tenkyo (転居)
