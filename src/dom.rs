@@ -23,10 +23,10 @@ pub fn update_countdown(seconds: u32) -> Result<(), JsValue> {
     let document = get_document()?;
 
     if let Some(element) = document.get_element_by_id("countdown") {
-        let text = if seconds == 1 {
-            format!("{} second remaining...", seconds)
+        let text = if seconds <= 1 {
+            format!("in {} second...", seconds)
         } else {
-            format!("{} seconds remaining...", seconds)
+            format!("in {} seconds...", seconds)
         };
         element.set_text_content(Some(&text));
     }
