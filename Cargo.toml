@@ -1,0 +1,45 @@
+[package]
+name = "tenkyo"
+version = "0.1.0"
+edition = "2021"
+authors = ["poyea"]
+description = "A lightweight WASM-powered URL redirection webpage"
+repository = "https://github.com/poyea/tenkyo"
+license = "MIT"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = false
+
+[dependencies]
+wasm-bindgen = "0.2"
+web-sys = { version = "0.3", features = [
+    "Window",
+    "Location",
+    "Document",
+    "HtmlElement",
+    "Element",
+    "console",
+    "Url",
+    "UrlSearchParams",
+    "EventTarget",
+    "MouseEvent",
+    "HtmlButtonElement",
+    "CssStyleDeclaration",
+] }
+js-sys = "0.3"
+serde = { version = "1.0", features = ["derive"] }
+serde-wasm-bindgen = "0.6"
+
+[dependencies.console_error_panic_hook]
+version = "0.1"
+optional = true
+
+[profile.release]
+opt-level = "z"     # Optimize for size
+lto = true          # Link-time optimization
+codegen-units = 1   # Better optimization
+panic = "abort"     # Smaller binary
+strip = true        # Strip symbols
