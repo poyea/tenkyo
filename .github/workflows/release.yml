@@ -32,6 +32,14 @@ jobs:
           zip -r ../tenkyo-web.zip . -x "node_modules/*" -x "package-lock.json"
           cd ..
 
+      - name: Generate checksums
+        id: checksums
+        run: |
+          sha256sum tenkyo-web.zip > tenkyo-web.zip.sha256
+          sha512sum tenkyo-web.zip > tenkyo-web.zip.sha512
+          echo "SHA256=$(cat tenkyo-web.zip.sha256 | awk '{print $1}')" >> $GITHUB_OUTPUT
+          echo "SHA512=$(cat tenkyo-web.zip.sha512 | awk '{print $1}')" >> $GITHUB_OUTPUT
+
       - name: Extract version from tag
         id: get_version
         run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
@@ -44,22 +52,13 @@ jobs:
           prerelease: false
           files: |
             tenkyo-web.zip
+            tenkyo-web.zip.sha256
+            tenkyo-web.zip.sha512
           body: |
-            ## 🚀 Release ${{ steps.get_version.outputs.VERSION }}
+            ### 🔐 Checksums
+            **SHA256:** `${{ steps.checksums.outputs.SHA256 }}`
+            **SHA512:** `${{ steps.checksums.outputs.SHA512 }}`
             
-            ### 📦 Artifacts
-            - `tenkyo-web.zip` - Complete webpage with WASM module
-            
-            ### 🌐 Usage
-            1. Download `tenkyo-web.zip`
-            2. Extract the archive
-            3. Serve the contents with any HTTP server
-            
-            Example:
-            ```bash
-            unzip tenkyo-web.zip -d tenkyo-web
-            cd tenkyo-web
-            python3 -m http.server 8080
-            ```
+            Verify: `sha256sum -c tenkyo-web.zip.sha256`
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
