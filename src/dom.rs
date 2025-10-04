@@ -1,3 +1,5 @@
+use std::cell::RefCell;
+use std::rc::Rc;
 use wasm_bindgen::prelude::*;
 use wasm_bindgen::JsCast;
 use web_sys::{Document, HtmlButtonElement, HtmlElement};
@@ -57,7 +59,7 @@ pub fn show_element(id: &str) -> Result<(), JsValue> {
     Ok(())
 }
 
-pub fn setup_cancel_button() -> Result<(), JsValue> {
+pub fn setup_cancel_button(cancelled: Rc<RefCell<bool>>) -> Result<(), JsValue> {
     let document = get_document()?;
 
     if let Some(button) = document.get_element_by_id("cancel-button") {
@@ -66,7 +68,7 @@ pub fn setup_cancel_button() -> Result<(), JsValue> {
         style.set_property("display", "inline-block")?;
 
         let closure = Closure::wrap(Box::new(move || {
-            crate::utils::log("Redirect cancelled by user");
+            *cancelled.borrow_mut() = true;
             let _ = update_message("Redirect cancelled");
             let _ = hide_element("countdown");
             let _ = hide_element("cancel-button");

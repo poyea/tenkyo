@@ -105,13 +105,6 @@ pub fn start_redirect(config: RedirectConfig) {
         utils::log(&format!("Error updating message: {:?}", e));
     }
 
-    // Set up cancel button if needed
-    if config.allow_cancel() {
-        if let Err(e) = dom::setup_cancel_button() {
-            utils::log(&format!("Error setting up cancel button: {:?}", e));
-        }
-    }
-
     // Start countdown or immediate redirect
     if config.delay_seconds() == 0 {
         redirect::perform_redirect(config.get_target_url());

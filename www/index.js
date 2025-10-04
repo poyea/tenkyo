@@ -5,8 +5,6 @@ async function run() {
         // Initialize WASM module
         await init();
 
-        console.log('WASM module loaded successfully');
-
         // Parse URL parameters
         const config = parse_url_params();
 
@@ -14,14 +12,22 @@ async function run() {
         start_redirect(config);
     } catch (error) {
         console.error('Error loading WASM module:', error);
-        
-        // Fallback: show error message
+
+        // Fallback: show error message and redirect using JavaScript
         const messageEl = document.getElementById('message');
         if (messageEl) {
             messageEl.textContent = 'Error loading. Redirecting via fallback...';
         }
-        
-        // The meta refresh tag will handle the redirect
+
+        // Parse URL parameters manually as fallback
+        const params = new URLSearchParams(window.location.search);
+        const url = params.get('url') || 'https://poyea.me';
+        const delay = parseInt(params.get('delay') || '3', 10);
+
+        // Redirect after delay
+        setTimeout(() => {
+            window.location.href = url;
+        }, delay * 1000);
     }
 }
 

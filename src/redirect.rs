@@ -26,12 +26,23 @@ pub fn start_countdown(config: RedirectConfig) {
     let show_countdown = config.show_countdown();
 
     let remaining = Rc::new(RefCell::new(delay));
+    let cancelled = Rc::new(RefCell::new(false));
     let window = web_sys::window().expect("should have a window");
 
     let countdown_closure = Rc::new(RefCell::new(None));
     let countdown_closure_clone = countdown_closure.clone();
 
+    let cancelled_clone = cancelled.clone();
     let interval_callback = Closure::wrap(Box::new(move || {
+        // Check if cancelled
+        if *cancelled_clone.borrow() {
+            if let Some(handle) = countdown_closure_clone.borrow_mut().take() {
+                let window = web_sys::window().expect("should have a window");
+                window.clear_interval_with_handle(handle);
+            }
+            return;
+        }
+
         let mut remaining_seconds = remaining.borrow_mut();
 
         if *remaining_seconds == 0 {
@@ -64,6 +75,14 @@ pub fn start_countdown(config: RedirectConfig) {
     ) {
         Ok(handle) => {
             *countdown_closure.borrow_mut() = Some(handle);
+
+            // Set up cancel button with access to the cancelled flag
+            if config.allow_cancel() {
+                if let Err(e) = dom::setup_cancel_button(cancelled) {
+                    utils::log(&format!("Error setting up cancel button: {:?}", e));
+                }
+            }
+
             interval_callback.forget();
         }
         Err(e) => {
