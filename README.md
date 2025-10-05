@@ -12,12 +12,12 @@
 
 ## URL Parameters
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `url` | string | `https://blog.poyea.me` | Target redirect URL |
-| `delay` | number | `3` | Delay in seconds before redirect |
-| `message` | string | `"Redirecting..."` | Custom message to display |
-| `cancel` | boolean | `false` | Show cancel button (add `&cancel` to enable) |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `url` | string | Target redirect URL |
+| `delay` | number | Delay in seconds before redirect |
+| `message` | string | Custom message to display |
+| `cancel` | boolean | Show cancel button (add `&cancel` to enable) |
 
 ## Examples
 
