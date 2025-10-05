@@ -70,7 +70,7 @@ impl RedirectConfig {
 
 impl Default for RedirectConfig {
     fn default() -> Self {
-        Self::new(String::from("https://poyea.me"), 3)
+        Self::new(String::from("https://blog.poyea.me"), 3)
     }
 }
 
@@ -123,13 +123,13 @@ pub fn parse_url_params() -> RedirectConfig {
     }
 
     let url = web_sys::Url::new_with_base(&search, &window.location().href().unwrap())
-        .unwrap_or_else(|_| web_sys::Url::new(&format!("http://poyea.me{}", search)).unwrap());
+        .unwrap_or_else(|_| web_sys::Url::new(&format!("http://blog.poyea.me{}", search)).unwrap());
 
     let params = url.search_params();
 
     let target_url = params
         .get("url")
-        .unwrap_or_else(|| String::from("https://poyea.me"));
+        .unwrap_or_else(|| String::from("https://blog.poyea.me"));
 
     let delay_seconds = params
         .get("delay")

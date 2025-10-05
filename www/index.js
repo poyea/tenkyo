@@ -21,7 +21,7 @@ async function run() {
 
         // Parse URL parameters manually as fallback
         const params = new URLSearchParams(window.location.search);
-        const url = params.get('url') || 'https://poyea.me';
+        const url = params.get('url') || 'https://blog.poyea.me';
         const delay = parseInt(params.get('delay') || '3', 10);
 
         // Redirect after delay
