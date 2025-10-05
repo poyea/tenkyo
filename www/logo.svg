@@ -1,9 +1,43 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 5 120 70" width="120" height="70">
-  <!-- Simple monochrome version for light backgrounds -->
-  <text x="100" y="60" 
-        font-family="'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif" 
-        font-size="48" 
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="30 0 140 80" width="140" height="80">
+  <defs>
+    <!-- Ink gradient for calligraphic effect -->
+    <linearGradient id="inkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a1a;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#000000;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2d2d2d;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Brush stroke texture effect -->
+    <filter id="brushStroke">
+      <feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="3" seed="2"/>
+      <feDisplacementMap in="SourceGraphic" scale="2"/>
+      <feGaussianBlur stdDeviation="0.3"/>
+    </filter>
+    
+    <!-- Subtle shadow for depth -->
+    <filter id="calligraphyShadow">
+      <feDropShadow dx="1" dy="2" stdDeviation="1" flood-opacity="0.3" flood-color="#000000"/>
+    </filter>
+  </defs>
+  
+  <!-- Calligraphic 転居 in traditional Chinese/Japanese brush style -->
+  <text x="100" y="58" 
+        font-family="'STKaiti', 'KaiTi', 'Noto Serif CJK SC', 'Noto Serif JP', 'MS Mincho', 'Yu Mincho', serif" 
+        font-size="52" 
         font-weight="700"
-        fill="#667eea" 
-        text-anchor="middle">転居</text>
+        fill="url(#inkGradient)" 
+        text-anchor="middle"
+        filter="url(#calligraphyShadow)"
+        style="paint-order: stroke fill;">転居</text>
+  
+  <!-- Optional: Red seal stamp effect (chop/hanko style) in corner -->
+  <g opacity="0.7">
+    <rect x="10" y="55" width="20" height="20" fill="#c41e3a" rx="2"/>
+    <text x="20" y="68" 
+          font-family="'STKaiti', 'KaiTi', 'Noto Serif CJK SC', serif" 
+          font-size="10" 
+          font-weight="900"
+          fill="#ffffff" 
+          text-anchor="middle">転</text>
+  </g>
 </svg>
