@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="30 0 140 80" width="140" height="80">
   <defs>
-    <!-- Ink gradient for calligraphic effect -->
+    <!-- Sky blue gradient for calligraphic effect -->
     <linearGradient id="inkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#1a1a1a;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#000000;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#2d2d2d;stop-opacity:1" />
+      <stop offset="0%" style="stop-color:#4FC3F7;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#29B6F6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#03A9F4;stop-opacity:1" />
     </linearGradient>
     
     <!-- Brush stroke texture effect -->
