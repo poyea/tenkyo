@@ -4,7 +4,7 @@
 
 ## Build
 
-*Prerequisites: Rust 1.70+ with wasm32-unknown-unknown target and wasm-pack*
+*Prerequisites: Rust 1.70+ with `wasm32-unknown-unknown` target and `wasm-pack`*
 
 ```bash
 ./build.sh && cd www && python3 -m http.server 8080
