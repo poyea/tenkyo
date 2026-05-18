@@ -12,3 +12,4 @@ ls -sh www/pkg/tenkyo_bg.wasm
 echo ""
 echo "✅ Build successful!"
 echo "To test locally, run: cd www && python3 -m http.server 8080"
+echo "Rust alternative: basic-http-server -a 0.0.0.0:8080 www"

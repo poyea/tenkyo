@@ -2,6 +2,7 @@
 name = "tenkyo"
 version = "0.1.0"
 edition = "2021"
+rust-version = "1.95"
 authors = ["poyea"]
 description = "A lightweight WASM-powered URL redirection webpage"
 repository = "https://github.com/poyea/tenkyo"
